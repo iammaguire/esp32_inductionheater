@@ -31,13 +31,13 @@ struct CircularMeter {
       sprite.drawLine(xStart, yStart, xEnd, yEnd, i <= angle ? lightColor : TFT_WHITE);
     }
 
+    sprite.setFreeFont(FF6); 
     String text = String(value) + "%";
     int textWidth = sprite.textWidth(text);
-    int textHeight = sprite.fontHeight(2);
+    int textHeight = sprite.fontHeight();
     int textX = radius - textWidth / 2;
-    int textY = radius - textHeight / 4;
+    int textY = radius + textHeight / 4;
 
-    sprite.setTextSize(2);
     sprite.setTextColor(TFT_WHITE);
     sprite.setCursor(textX, textY);
     sprite.print(text);

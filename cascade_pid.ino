@@ -51,6 +51,14 @@ void setup() {
 }
 
 void loop() {
+  if (Serial.available()) {
+    pid.Kp = Serial.parseFloat();
+    Serial.read();
+    Serial.println("---------------------------------------");
+    Serial.println(pid.Kp);
+    Serial.println("---------------------------------------");
+  }
+
   buttonState1 = digitalRead(BTN1);
   buttonState2 = digitalRead(BTN2);
 
@@ -95,14 +103,14 @@ void loop() {
 
   digitalWrite(RLY, output_outer > 0 ? HIGH : LOW);
 
-  Serial.print((target - temperature));
+  /*Serial.print((target - temperature));
   Serial.print(" ");
   Serial.print(target);
   Serial.print(" ");
   Serial.print(temperature);
   Serial.print(" ");
   Serial.print(output_outer);
-  Serial.println("");
+  Serial.println("");*/
 
   drawUI();
 

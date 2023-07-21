@@ -31,12 +31,7 @@ int tempColor() {
   }
 }
 
-void drawUI() {
-  graph1.drawPixel(graphWidth-1, graphHeight-1, TFT_BLUE);
-  graph1.drawFastVLine(1, 1, graphHeight-1, TFT_BLUE);
-  tft.drawFastVLine(graphX+graphWidth,graphY-1,graphHeight-1,TFT_BLUE);
-  tft.drawFastHLine(graphX+2,graphY-1,graphWidth-1,TFT_BLUE);
- 
+void drawUI() { 
   if (millis() - plotTime >= 100) {
     plotTime = millis();
 
@@ -44,7 +39,7 @@ void drawUI() {
     //graph1.drawFastVLine(graphWidth-1,graphHeight-temperature,1,tempColor());
     graph1.drawLine(lastTargetX, lastTargetY, graphWidth-1, graphHeight-target, TFT_GOLD);
     graph1.drawLine(lastTempX, lastTempY, graphWidth-1, graphHeight-temperature, tempColor());
-    graph1.drawLine(lastOutX, lastOutY, graphWidth-1, graphHeight-temperature, TFT_GRAY);
+    graph1.drawLine(lastOutX, lastOutY, graphWidth-1, graphHeight-output_outer-60, TFT_WHITE);
     graph1.scroll(-1, 0);
     graph1.pushSprite(graphX, graphY);
     
@@ -53,7 +48,8 @@ void drawUI() {
     lastTempX = graphWidth-1;
     lastTempY = graphHeight-temperature;
     lastOutX = graphWidth-1;
-    lastOutY = output_outer;
+    lastOutY = graphHeight-output_outer-60;
+    Serial.println(output_outer);
     grid++;
     
     if (grid >= 25)
@@ -78,6 +74,11 @@ void drawUI() {
   infoText.drawString(infoStr, 0, 35);
   infoText.drawFastVLine(graphX + graphWidth + 1, graphY, graphHeight, TFT_BLUE);
   infoText.pushSprite(graphX+10, graphY+graphHeight+20);
+  
+  graph1.drawPixel(graphWidth-1, graphHeight-1, TFT_BLUE);
+  graph1.drawFastVLine(1, 1, graphHeight-1, TFT_BLUE);
+  tft.drawFastVLine(graphX+graphWidth,graphY-1,graphHeight-1,TFT_BLUE);
+  tft.drawFastHLine(graphX+2,graphY-1,graphWidth-1,TFT_BLUE);
 }
 
 void setupUI() {

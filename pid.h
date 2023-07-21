@@ -1,9 +1,11 @@
-#define PID_KP  1.0f
-#define PID_KI  0.25f
-#define PID_KD  0.125f
-#define PID_TAU 0.02f
-#define PID_LIM_MIN -50.0f
-#define PID_LIM_MAX  50.0f
+#define Ku 50
+#define Tu 3
+#define PID_KP  30//4.0f
+#define PID_KI  180//0.25f
+#define PID_KD  11.25//0.125f
+#define PID_TAU 3.00f
+#define PID_LIM_MIN -25.0f
+#define PID_LIM_MAX  25.0f
 #define PID_LIM_MIN_INT -5.0f
 #define PID_LIM_MAX_INT  5.0f
 
@@ -47,6 +49,7 @@ void PIDController_Init(PIDController *pid);
 float PIDController_Update(PIDController *pid, float setpoint, float measurement);
 
 int curve_length = sizeof(temperature_curve) / sizeof(temperature_curve[0]);
+
 void PIDController_Init(PIDController *pid) {
   pid->integrator = 0.0f;
   pid->prevError = 0.0f;
