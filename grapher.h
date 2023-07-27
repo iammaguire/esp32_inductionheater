@@ -49,7 +49,6 @@ void drawUI() {
     lastTempY = graphHeight-temperature;
     lastOutX = graphWidth-1;
     lastOutY = graphHeight-output_outer-60;
-    Serial.println(output_outer);
     grid++;
     
     if (grid >= 25)
