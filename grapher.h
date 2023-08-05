@@ -37,16 +37,16 @@ void drawUI() {
 
     //graph1.drawFastVLine(graphWidth-1,graphHeight-temperature,1,TFT_YELLOW);
     //graph1.drawFastVLine(graphWidth-1,graphHeight-temperature,1,tempColor());
-    graph1.drawLine(lastTargetX, lastTargetY, graphWidth-1, graphHeight-target, TFT_GOLD);
-    graph1.drawLine(lastTempX, lastTempY, graphWidth-1, graphHeight-temperature, tempColor());
+    graph1.drawLine(lastTargetX, lastTargetY, graphWidth-1, graphHeight-target+30, TFT_GOLD);
+    graph1.drawLine(lastTempX, lastTempY, graphWidth-1, graphHeight-temperature+30, tempColor());
     graph1.drawLine(lastOutX, lastOutY, graphWidth-1, graphHeight-output_outer-60, TFT_WHITE);
     graph1.scroll(-1, 0);
     graph1.pushSprite(graphX, graphY);
     
     lastTargetX = graphWidth-1;
-    lastTargetY = graphHeight-target;
+    lastTargetY = graphHeight-target+30;
     lastTempX = graphWidth-1;
-    lastTempY = graphHeight-temperature;
+    lastTempY = graphHeight-temperature+30;
     lastOutX = graphWidth-1;
     lastOutY = graphHeight-output_outer-60;
     grid++;
@@ -67,9 +67,9 @@ void drawUI() {
   }
 
   infoText.setFreeFont(FF6); 
-  sprintf(infoStr, "%.02f", temperature);
+  sprintf(infoStr, "%.0f C  ", temperature);
   infoText.drawString(infoStr, 0, 0);
-  sprintf(infoStr, "%.02f", target);
+  sprintf(infoStr, "%.0f C  ", target);
   infoText.drawString(infoStr, 0, 35);
   infoText.drawFastVLine(graphX + graphWidth + 1, graphY, graphHeight, TFT_BLUE);
   infoText.pushSprite(graphX+10, graphY+graphHeight+20);
